@@ -7,7 +7,7 @@
         <div class="col-md-8 order-md-1 order-sm-2">
 
           @if(empty( $videos->toArray() ))
-            <h4>По данному запросу ничего не найдено</h4>
+            <h4>Ничего не найдено!</h4>
           @endif
 
            @foreach($videos as $video)
@@ -27,7 +27,7 @@
               </div>
            @endforeach
         </div>
-        <div class="col-md-4 order-md-2 order-sm-1 mb-2">
+        <div class="col-md-4 order-md-2 order-sm-1 mb-2 bg-white p-2">
           <h4 class="text-center">Фильтрация:</h4>
             <form action="/" method="GET">
                 <div class="form-row">

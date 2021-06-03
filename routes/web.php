@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\MainController::class, 'index'])->name('index');
+Route::get('/video/create', [App\Http\Controllers\VideoController::class, 'create'])
+      ->name('video.create')
+      ->middleware('can:create,App\Models\Video');
+
+Route::post('/video', [App\Http\Controllers\VideoController::class, 'store']);
