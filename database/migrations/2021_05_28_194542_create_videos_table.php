@@ -16,6 +16,8 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
+            $table->string('preview');
+            $table->tinyInteger('watched')->default(0);
             $table->string('link');
             $table->string('platform');
             $table->string('queue');
