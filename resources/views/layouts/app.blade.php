@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -39,7 +40,7 @@
                                  Управление видео
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Добавить видео</a>
+                            <a class="dropdown-item" href="/video/create">Добавить видео</a>
                             </div>
                         </li>
                     @endcan

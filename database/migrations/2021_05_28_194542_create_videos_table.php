@@ -24,6 +24,7 @@ class CreateVideosTable extends Migration
             $table->float('sum');
             $table->time("start");
             $table->time("finish");
+            $table->text("comment")->nullable();
             $table->timestamps();
         });
     }
