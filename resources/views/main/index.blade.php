@@ -11,19 +11,42 @@
           @endif
 
            @foreach($videos as $video)
-           <div class="card xs-3">
-                <div class="row no-gutters">
-                  <div class="col-md-4">
-                    <img src="{{ $video->preview }}" class="card-img" alt="...">
-                  </div>
-                  <div class="col-md-8">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ $video->title }}</h5>
-                      <p class="card-text"></p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <div class="card xs-3 mb-2">
+                  <div class="row no-gutters">
+                    <div class="col-md-4">
+                     <a href="{{ $video->link }}" target="_blank"> 
+                       <img src="{{ $video->preview }}" class="card-img h-100" alt="...">
+                    </a>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="card-body">
+                        @if($video->platform === "Youtube")
+                          <span class="badge badge-danger float-right"> {{ $video->platform }} </span>
+                        @endif
+                        @if($video->platform === "GoodGame")
+                          <span class="badge badge-info float-right"> {{ $video->platform }} </span>
+                        @endif
+                        @if($video->platform === "Другая")
+                          <span class="badge badge-dark float-right"> {{ $video->platform }} </span>
+                        @endif
+                        <h5 class="card-title">{{ $video->title }}</h5>
+                        <p class="card-text">
+                        <img height="18" width="18" src="/storage/svg/icons/bar-chart-fill.svg" /> Очередь: {{ $video->queue }} <br>
+                          <img height="18" width="18" src="/storage/svg/icons/cash.svg" /> Сумма:   {{ $video->sum }} Р
+                        </p>
+                       @if($video->comment)
+                          <p class="card-text">
+                            Комментарий: <br> {{ $video->comment }}
+                          </p>
+                       @endif
+                       <p class="card-text">
+                         <small class="text-muted">
+                           От: {{ $video->start }} <br> До: {{ $video->finish }}
+                         </small>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
               </div>
            @endforeach
         </div>
@@ -44,6 +67,9 @@
                   <div class="form-group col-md-6">
                     <label for="paltform">Платформа</label>
                     <select id="paltform" class="form-control" name="platform">
+                      <option value="0">
+                          Любая
+                      </option>
                       <option value="Youtube">
                         Youtube
                       </option>
@@ -56,8 +82,28 @@
                     </select>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary float-right">Применить</button>
+                <button type="submit" class="btn btn-primary mb-2 w-100">Применить</button>
             </form>
+            <div class="alert alert-warning" role="alert">
+                Перед заказом видео необходимо ознакомиться с <a href="/rules" class="alert-link">правилами</a>.
+                <br>
+                <br>
+                Заказать видео можно <a href="https://donatepay.ru/donation/76704" target="_blank" class="alert-link"> тут. </a>
+            </div>
+            <div class="alert alert-info" role="alert">
+             <h4 class="text-center">Тарифы:</h4>
+             <ol style="font-size: 16px">
+               <li>25 р / мин</li>
+               <li>50 р / мин</li>
+               <li>100 р / мин</li>
+               <li>200 р / мин</li>
+             </ol>
+             <div class="text-dark">
+               <strong>
+                Чем выше выбранный тариф, тем скорее видео будет просмотрено.
+               </strong>
+             </div>
+          </div>
         </div>
     </div>
 </div>
