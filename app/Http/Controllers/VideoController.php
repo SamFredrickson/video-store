@@ -18,6 +18,59 @@ class VideoController extends Controller
         return view('video.create');
     }
 
+    public function edit(Video $video)
+    {
+        $this->authorize('update', $video);
+
+        return view('video.edit', compact('video'));
+    }
+
+    public function update(Request $request, Video $video)
+    {
+        $validated = $request->validate([
+            'link'   => 'required',
+            'queue'  => 'required|numeric',
+            'start'  => 'required',
+            'finish' => 'required',
+            'sum'    => 'required|numeric',
+        ]);
+        
+       $id = PregMatcher::getYoutubeCode($request->input('link'));
+
+       if($id)
+       {
+            $response = Http::get($this->youtube, [
+                'key'  => 'AIzaSyCSCuLWB2oc-eWKEobaTa_XWBxOCosIl-w',
+                'part' => 'snippet',
+                'id'   => $id
+            ]);
+            
+            $title   = $response['items'][0]['snippet']['title'];
+            $preview = $response['items'][0]['snippet']['thumbnails']['high']['url']; 
+       }
+
+       if( !$id ) {
+         $title = $request->input('title') 
+             ? $request->input('title') : "Не указано";
+
+          $preview = '/storage/images/preview.jpg';
+       }
+
+       $video->link     = $request->input('link');
+       $video->title    = $title;
+       $video->platform = $request->input('platform');
+       $video->preview  = $preview;
+       $video->queue    = $request->input('queue');
+       $video->start    = $request->input('start');
+       $video->finish   = $request->input('finish');
+       $video->sum      = $request->input('sum');
+       $video->comment  = $request->input('comment');
+
+       $video->save();
+
+       return redirect('/');
+    }
+
     public function store(Request $request)
     {
         $this->authorize('create', Video::class);

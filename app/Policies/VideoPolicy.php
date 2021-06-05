@@ -59,7 +59,13 @@ class VideoPolicy
      */
     public function update(User $user, Video $video)
     {
-        //
+        if( $user->roles()->pluck('roles.name')->contains('admin') )
+            return true;
+
+        if( $user->roles()->pluck('roles.name')->contains('moderator') )
+            return true;
+
+        return false;
     }
 
     /**
