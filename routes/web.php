@@ -33,3 +33,13 @@ Route::patch('/video/{video}', [App\Http\Controllers\VideoController::class, 'up
 // Rules
 Route::get('/rules', [App\Http\Controllers\RulesController::class, 'index'])
       ->name('rules.index');
+
+// Watched
+
+Route::get('/watched', [App\Http\Controllers\WatchedController::class, 'index'])
+      ->name('watched.index');
+
+// Unwatched
+
+Route::post('/video/toggle/{video}', [App\Http\Controllers\WatchedController::class, 'update'])
+      ->middleware('can:update,video');

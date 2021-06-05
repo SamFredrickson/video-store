@@ -1880,6 +1880,9 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    axios = _require["default"];
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
@@ -1901,7 +1904,15 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  methods: {
+    toggleWatched: function toggleWatched(event) {
+      var id = event.target.dataset.videoId;
+      axios.post("/video/toggle/".concat(id)).then(function (response) {
+        if (response.status) event.target.closest('.card').remove();
+      });
+    }
+  }
 });
 
 /***/ }),
