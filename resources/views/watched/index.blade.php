@@ -60,7 +60,7 @@
                             </a>
                             <a href="" @click.prevent="toggleWatched" class="float-right text-danger">
                               <small data-video-id="{{ $video->id }}">
-                                 Просмотрено
+                                Вернуть к просмотру
                               </small>
                             </a>
                          @endcan
@@ -73,7 +73,7 @@
         </div>
         <div class="col-md-4 order-md-2 order-sm-1 mb-2 bg-white p-2">
           <h4 class="text-center">Фильтрация:</h4>
-            <form action="/" method="GET">
+            <form action="/watched" method="GET">
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="title">Название видео</label>

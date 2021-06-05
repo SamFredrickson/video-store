@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: axios } = require('axios');
+
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -29,4 +31,15 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    methods: {
+        toggleWatched: function(event)
+        {
+            let id = event.target.dataset.videoId;
+            axios.post(`/video/toggle/${id}`)
+            .then(response => {
+                if( response.status )
+                    event.target.closest('.card').remove();
+            });
+        }
+    }
 });

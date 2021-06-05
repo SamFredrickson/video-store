@@ -65,6 +65,12 @@
                                 </a>
                         </li>
 
+                        <li class="nav-item">
+                                <a class="nav-link" href="/watched">
+                                    Просмотренные видео
+                                </a>
+                        </li>
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
