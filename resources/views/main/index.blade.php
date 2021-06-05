@@ -15,11 +15,12 @@
                   <div class="row no-gutters">
                     <div class="col-md-4">
                      <a href="{{ $video->link }}" target="_blank"> 
-                       <img src="{{ $video->preview }}" class="card-img h-100" alt="...">
+                       <img src="{{ $video->preview }}" class="card-img h-100 w" alt="...">
                     </a>
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
+                        <span class="badge badge-success float-right ml-1"> {{ $video->sum }} Р </span>
                         @if($video->platform === "Youtube")
                           <span class="badge badge-danger float-right"> {{ $video->platform }} </span>
                         @endif
@@ -32,18 +33,38 @@
                         <h5 class="card-title">{{ $video->title }}</h5>
                         <p class="card-text">
                         <img height="18" width="18" src="/storage/svg/icons/bar-chart-fill.svg" /> Очередь: {{ $video->queue }} <br>
-                          <img height="18" width="18" src="/storage/svg/icons/cash.svg" /> Сумма:   {{ $video->sum }} Р
                         </p>
-                       @if($video->comment)
-                          <p class="card-text">
-                            Комментарий: <br> {{ $video->comment }}
-                          </p>
-                       @endif
                        <p class="card-text">
                          <small class="text-muted">
-                           От: {{ $video->start }} <br> До: {{ $video->finish }}
+                           Смотреть: {{ $video->start }} - {{ $video->finish }}
                          </small>
+                         <br>
+                        @if($video->comment)
+                          <small class="text-muted">
+                            Комменатрий: {{ $video->comment }}
+                          </small>
+                        @endif
                         </p>
+                        <p class="card-text">
+                          <a href="{{ $video->skip() }}" target="_blank">
+                            <small>
+                              <img height="18" width="18" src="/storage/svg/icons/skip-forward-btn.svg" />
+                              Скипнуть видео
+                            </small>
+                          </a>
+                         @can('update', $video, 'App\Models\Video')
+                            <a href="/video/{{ $video->id }}/edit" class="float-right ml-1">
+                              <small>
+                                | Редактировать
+                              </small>
+                            </a>
+                            <a href="" class="float-right text-danger">
+                              <small>
+                                Просмотрено
+                              </small>
+                            </a>
+                         @endcan
+                         </p>
                       </div>
                     </div>
                   </div>
@@ -65,18 +86,18 @@
                     <input type="text" class="form-control" name="queue" value="{{ old('queue') }}" id="queue" placeholder="Очередь">
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="paltform">Платформа</label>
-                    <select id="paltform" class="form-control" name="platform">
-                      <option value="0">
-                          Любая
+                    <label for="platform">Платформа</label>
+                    <select id="platform" class="form-control" name="platform">
+                      <option value="0" @if (old('platform') == "0") {{ 'selected' }} @endif>
+                          Все
                       </option>
-                      <option value="Youtube">
+                      <option value="Youtube"  @if (old('platform') == "Youtube") {{ 'selected' }} @endif>
                         Youtube
                       </option>
-                      <option value="GoodGame">
+                      <option value="GoodGame" @if (old('platform') == "GoodGame") {{ 'selected' }} @endif>
                         GoodGame
                       </option>
-                      <option value="Другая">
+                      <option value="Другая" @if (old('platform') == "Другая") {{ 'selected' }} @endif>
                         Другая
                       </option>
                     </select>
@@ -85,7 +106,7 @@
                 <button type="submit" class="btn btn-primary mb-2 w-100">Применить</button>
             </form>
             <div class="alert alert-warning" role="alert">
-                Перед заказом видео необходимо ознакомиться с <a href="/rules" class="alert-link">правилами</a>.
+                Перед <strong>заказом</strong> или <strong>скипом</strong> видео необходимо ознакомиться с <a href="/rules" class="alert-link">правилами</a>.
                 <br>
                 <br>
                 Заказать видео можно <a href="https://donatepay.ru/donation/76704" target="_blank" class="alert-link"> тут. </a>
@@ -103,6 +124,12 @@
                 Чем выше выбранный тариф, тем скорее видео будет просмотрено.
                </strong>
              </div>
+          </div>
+          <div class="alert alert-danger" role="alert">
+              <strong>
+                НЕЛЬЗЯ
+              </strong>
+              скипать видео, если оно просматривается в данный момент
           </div>
         </div>
     </div>

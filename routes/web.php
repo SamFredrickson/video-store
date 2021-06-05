@@ -22,3 +22,14 @@ Route::get('/video/create', [App\Http\Controllers\VideoController::class, 'creat
       ->name('video.create')
       ->middleware('can:create,App\Models\Video');
 
+Route::get('/video/{video}/edit', [App\Http\Controllers\VideoController::class, 'edit'])
+      ->name('video.edit')
+      ->middleware('can:update,video');
+
+Route::patch('/video/{video}', [App\Http\Controllers\VideoController::class, 'update'])
+      ->name('video.update')
+      ->middleware('can:update,video');
+
+// Rules
+Route::get('/rules', [App\Http\Controllers\RulesController::class, 'index'])
+      ->name('rules.index');

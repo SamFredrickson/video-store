@@ -20,7 +20,7 @@ class CreateVideosTable extends Migration
             $table->tinyInteger('watched')->default(0);
             $table->string('link');
             $table->string('platform');
-            $table->string('queue');
+            $table->integer('queue');
             $table->float('sum');
             $table->time("start");
             $table->time("finish");
