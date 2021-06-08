@@ -21,7 +21,7 @@ class WatchedController extends Controller
         if($request->input('platform'))
             $videos->where('platform', $request->input('platform'));
 
-        $videos = $videos->get();
+        $videos = $videos->paginate(30);
 
         session()->flashInput($request->all());
         return view('watched.index', compact('videos'));

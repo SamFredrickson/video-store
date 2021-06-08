@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Utils\PregMatcher;
 use Illuminate\Support\Facades\Http;
 use App\Models\Video;
+use Carbon\Carbon;
 
 class VideoController extends Controller
 {
@@ -45,8 +46,13 @@ class VideoController extends Controller
                 'id'   => $id
             ]);
             
-            $title   = $response['items'][0]['snippet']['title'];
-            $preview = $response['items'][0]['snippet']['thumbnails']['high']['url']; 
+            if( ! empty($response['items']) ){
+                $title   = $response['items'][0]['snippet']['title'];
+                $preview = $response['items'][0]['snippet']['thumbnails']['high']['url']; 
+            }else{
+                $title   = 'Не указано';
+                $preview = '/storage/images/preview.jpg'; 
+            } 
        }
 
        if( !$id ) {
@@ -93,8 +99,13 @@ class VideoController extends Controller
                 'id'   => $id
             ]);
             
-            $title   = $response['items'][0]['snippet']['title'];
-            $preview = $response['items'][0]['snippet']['thumbnails']['high']['url']; 
+            if( ! empty($response['items']) ){
+                $title   = $response['items'][0]['snippet']['title'];
+                $preview = $response['items'][0]['snippet']['thumbnails']['high']['url']; 
+            }else{
+                $title   = 'Не указано';
+                $preview = '/storage/images/preview.jpg'; 
+            }
        }
 
        if( !$id ) {

@@ -22,6 +22,8 @@ window.Vue = require('vue').default;
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('new-moder-modal', require('./components/NewModerModal.vue').default);
+Vue.component('old-moder-modal', require('./components/OldModerModal.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -40,6 +42,8 @@ const app = new Vue({
                 if( response.status )
                     event.target.closest('.card').remove();
             });
-        }
+        },
+
+       
     }
 });
