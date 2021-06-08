@@ -43,7 +43,5 @@ const app = new Vue({
                     event.target.closest('.card').remove();
             });
         },
-
-       
     }
 });

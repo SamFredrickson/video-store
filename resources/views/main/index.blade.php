@@ -41,7 +41,7 @@
                          <br>
                         @if($video->comment)
                           <small class="text-muted">
-                            Комменатрий: {{ $video->comment }}
+                            Комменатрий: <strong>{{ $video->comment }}</strong>
                           </small>
                         @endif
                         </p>
@@ -134,6 +134,19 @@
               </strong>
               скипать видео, если оно <strong>НЕ</strong> просматривается в данный момент
           </div>
+          <h4 class="text-center">Калькулятор:</h4>
+            <form action="/" method="GET">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="queueCalc">Очередь</label>
+                    <input type="text" class="form-control" name="queueCalc" id="queueCalc" placeholder="Очередь">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="duration">Длительность</label>
+                    <input type="time" step="1" class="form-control" name="duration" id="duration" placeholder="Очередь">
+                  </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

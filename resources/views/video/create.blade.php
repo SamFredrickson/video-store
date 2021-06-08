@@ -28,7 +28,13 @@
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="queue">Очередь</label>
-              <input type="text" value="{{ old('queue') }}" class="form-control @error('queue') is-invalid @enderror" id="queue" name="queue" placeholder="Очередь">
+              <input type="text" 
+              value="{{ old('queue') }}" 
+              class="form-control @error('queue') is-invalid @enderror" 
+              id="queue" 
+              name="queue" 
+              placeholder="Очередь"
+              ref="queue">
               @error('queue')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -53,7 +59,12 @@
         <div class="form-row">
           <div class="form-group col-md-4">
             <label for="sum">Сумма</label>
-            <input type="text" value="{{ old('sum') }}" class="form-control @error('sum') is-invalid @enderror" name="sum" id="sum">
+            <input type="text" 
+            value="{{ old('sum') }}" 
+            class="form-control @error('sum') is-invalid @enderror" 
+            name="sum" 
+            id="sum"
+            >
             @error('sum')
               <div class="invalid-feedback">
                   {{ $message }}
@@ -71,7 +82,14 @@
           </div>
           <div class="form-group col-md-4">
             <label for="finish">До</label>
-            <input type="time" step="1" value="{{ old('finish') }}" name="finish" class="form-control @error('finish') is-invalid @enderror" id="finish">
+            <input type="time" 
+            step="1" 
+            value="{{ old('finish') }}" 
+            name="finish" 
+            class="form-control @error('finish') is-invalid @enderror" 
+            id="finish"
+            ref="finish"
+            >
             @error('sum')
               <div class="invalid-feedback">
                   {{ $message }}

@@ -41,7 +41,7 @@
                          <br>
                         @if($video->comment)
                           <small class="text-muted">
-                            Комменатрий: {{ $video->comment }}
+                            Комменатрий: <strong>{{ $video->comment }}</strong>
                           </small>
                         @endif
                         </p>
