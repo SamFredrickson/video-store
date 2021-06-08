@@ -50,8 +50,8 @@
                                  Управление модераторами
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Добавить модератора</a>
-                            <a class="dropdown-item" href="#">Удалить модератора</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#newModer">Добавить модератора</a>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#oldModer">Удалить модератора</a>
                         </li>
                     @endcan
                     </ul>
@@ -111,6 +111,12 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <div class="modals">
+        @can('create', App\Models\User::class)
+            <new-moder-modal></new-moder-modal>
+            <old-moder-modal></old-moder-modal>
+        @endcan
+        </div>
     </div>
 </body>
 </html>

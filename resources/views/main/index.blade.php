@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-8 order-md-1 order-sm-2">
 
-          @if(empty( $videos->toArray() ))
+          @if(empty( $videos->all() ))
             <h4>Ничего не найдено!</h4>
           @endif
 
@@ -60,7 +60,7 @@
                             </a>
                             <a href="" @click.prevent="toggleWatched" class="float-right text-danger">
                               <small data-video-id="{{ $video->id }}">
-                                 Просмотрено
+                                 В просмотрено
                               </small>
                             </a>
                          @endcan
@@ -70,6 +70,9 @@
                   </div>
               </div>
            @endforeach
+          <div class="row justify-content-center">
+              {{ $videos->links() }}
+          </div>
         </div>
         <div class="col-md-4 order-md-2 order-sm-1 mb-2 bg-white p-2">
           <h4 class="text-center">Фильтрация:</h4>

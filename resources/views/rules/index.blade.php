@@ -36,9 +36,16 @@
             <div class="alert alert-danger" role="alert">
                 То что видео лежит на ютубе не означает что его можно смотреть на стриме: например, если канал топовый то у него могут быть права на использование авторского контента. И так же наоборот, если видос с малым количеством просмотров, то до него нет дела 
             </div>
-            <a href="https://new.donatepay.ru/@76704?name=Гой" class="btn btn-success btn-lg w-100">
-                Заказать
-            </a>
+            <div class="container">
+                <div class="row justify-content-end">
+                <a href="/" class="btn btn-primary">
+                     Вернуться на главную
+                 </a>
+                <a target="_blank" href="https://new.donatepay.ru/@76704?name=Гой" class="btn btn-success ml-1">
+                     Заказать видео
+                 </a>
+            </div>
+            </div>
        </div>
     </div>
 </div>

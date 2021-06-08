@@ -43,3 +43,10 @@ Route::get('/watched', [App\Http\Controllers\WatchedController::class, 'index'])
 
 Route::post('/video/toggle/{video}', [App\Http\Controllers\WatchedController::class, 'update'])
       ->middleware('can:update,video');
+
+// User
+
+Route::get('/user/mail/check', [App\Http\Controllers\UserController::class, 'checkMail']);
+
+Route::post('/user/moder/toggle/{user}', [App\Http\Controllers\UserController::class, 'update'])
+      ->middleware('can:update,user');
